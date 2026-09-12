@@ -9,6 +9,7 @@ venv/
 ENV/
 *.sqlite3
 *.sqlite3-journal
+backend/staticfiles/
 
 # Testing / Pytest
 .pytest_cache/

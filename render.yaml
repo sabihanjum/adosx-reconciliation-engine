@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: adosx-reconciliation-engine
+    runtime: python
+    buildCommand: './build.sh'
+    startCommand: 'gunicorn --chdir backend core.wsgi:application'
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: NODE_VERSION
+        value: 20.17.0

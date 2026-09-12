@@ -1,4 +1,4 @@
-﻿# AdosX Cross-System Reconciliation & Tenant Isolation Engine
+# AdosX Cross-System Reconciliation & Tenant Isolation Engine
 
 An end-to-end data reconciliation and auditing system that ingests dirty CSV exports from two disparate systems (`System A` and `System B`), enforces strict multi-tenant boundary isolation via `locations.csv`, pinpoints four distinct classes of discrepancies, and presents audit results in an interactive React dashboard.
 
@@ -72,6 +72,18 @@ npm run dev
 ```
 
 Visit **http://localhost:5173** to view the audit dashboard. The Vite server proxies `/api` requests to Django at `http://127.0.0.1:8000`.
+
+### Step 4: Deploy to Render (1-Click Blueprint or Web Service)
+
+This repository includes a [`render.yaml`](./render.yaml) blueprint and [`build.sh`](./build.sh) script that builds both the React frontend and Django backend into a single production web service using WhiteNoise:
+
+1. Log into [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** -> **Blueprint**.
+3. Select this repository (`sabihanjum/adosx-reconciliation-engine`).
+4. Click **Apply**. Render will automatically:
+   - Run `build.sh` (builds the React frontend with Vite, installs Python dependencies, runs migrations, ingests CSVs, and gathers static assets).
+   - Start the service using `gunicorn --chdir backend core.wsgi:application`.
+5. Access your live application at the provided `https://<service-name>.onrender.com` URL.
 
 ---
 
